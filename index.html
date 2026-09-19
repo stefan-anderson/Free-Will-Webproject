@@ -14,34 +14,40 @@
       <link rel="icon" href="data:image/svg+xml;utf8,
          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
          <text y='100' font-size='140' fill='white'>Φ</text>
-         </svg>"
-         media="(prefers-color-scheme: dark)">
-      <style>
+         </svg>" media="(prefers-color-scheme: dark)">
+       <style>
          .top-ticker {
          position: fixed;
          top: 0;
          left: 0;
          width: 100%;
-         background: rgba(0,0,0,0.65);
+         padding: 12px 0;
+         font-size: 18px;
+         letter-spacing: 0.5px;
          color: #f2d675;
-         padding: 10px 0;
-         font-size: 24px;
-         white-space: nowrap;
-         overflow: hidden;
+         text-shadow: 0 0 3px rgba(255,255,255,1);
          z-index: 999999;
+         overflow: hidden;
+         white-space: nowrap;
+         /* Fade mask */
+         -webkit-mask-image: linear-gradient(to right,
+           transparent 0%,
+           black 10%,
+           black 90%,
+           transparent 100%);
+         mask-image: linear-gradient(to right,
+           transparent 0%,
+           black 10%,
+           black 90%,
+           transparent 100%);
          }
          .scroll-text {
          display: inline-block;
-         padding-left: 100%;
-         animation: ticker 12s linear infinite;
-         }
-         .top-ticker.hide {
-         opacity: 0;
-         transform: translateY(-100%);
-         transition: opacity 0.3s ease, transform 0.3s ease;
+         white-space: nowrap;
+         animation: ticker 18s linear forwards;
          }
          @keyframes ticker {
-         0%   { transform: translateX(0); }
+         0%   { transform: translateX(100%); }
          100% { transform: translateX(-100%); }
          }
          .next {
@@ -77,8 +83,8 @@
          /* Content container with translucent background */
          .content {
          max-width: 68ch;
-         margin: 40px auto;
-         padding: 30px 25px;
+         margin: 28px auto;
+         padding: 24px 28px;
          background: rgba(0, 0, 0, 0.65);
          border-radius: 12px;
          }
@@ -124,14 +130,12 @@
              margin: 20px auto;
            }
          }
-      </style>
+       </style>
    </head>
    <body>
       <div class="bg"> </div>
       <div class="top-ticker">
-         <div class="scroll-text">Welcome to your academy of truth and freedom.
-            We examine consciousness and agency where reductionism and dualism can no longer account for reality.
-            Revealing the deeper structure of what is.
+         <div class="scroll-text">Welcome to your academy of truth and freedom. We examine consciousness and agency where reductionism and dualism can no longer account for reality. Revealing the deeper structure of what is.
          </div>
       </div>
       <div class="content">
@@ -245,20 +249,5 @@
         <a href="https://plato.stanford.edu" rel="nofollow">SEP</a>
       </small>
       </div>
-      <script>
-         const ticker = document.querySelector(".top-ticker");  
-         window.addEventListener("scroll", () => {
-           if (window.scrollY > 0) {
-           // not on top → hide ticker
-             ticker.classList.add("hide");
-           } else {
-             // on top → show ticker
-             ticker.classList.remove("hide");
-           }
-         });
-         window.addEventListener('click', () => {
-           ticker.classList.toggle('hide');
-         });
-      </script>
    </body>
 </html>
